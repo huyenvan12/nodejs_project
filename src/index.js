@@ -7,7 +7,12 @@ const path = require('path')
 
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
+
+app.use(express.urlencoded({
+    extended: true
+}))
+app.use(express.json())
 
 //template engine
 app.engine('hbs', hbs.engine({
@@ -16,10 +21,18 @@ app.engine('hbs', hbs.engine({
 app.set('view engine', 'hbs');
 app.set('views', './src/resources/views')
 
-// console.log(path.join(__dirname, 'resources/views'))
+//Local host --- Hosting
 
 app.get('/', (req, res) => {
     res.render('home');
+})
+
+app.get('/search', (req, res) => {
+    res.render('search');
+})
+app.post('/search', (req, res) => {
+    console.log(req.body);
+    res.send(' ');
 })
 
 app.listen(port, () => {
