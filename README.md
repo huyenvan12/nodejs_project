@@ -37,4 +37,4 @@ This repo will be updated regularly to add new documentation and source code.
 
 ## Contact
 
-If you have any questions, please contact the author of the repo, Ngoc Huyen, via email: [email protected]
+If you have any questions, please contact the author of the repo, Ngoc Huyen, via email: [wendy.hngoc@gmail.com]
