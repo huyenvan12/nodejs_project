@@ -1,0 +1,148 @@
+<form class="mt-4" name="container-form" method="post" action="/ketch-ups/handle-form-actions">
+    <div>
+        <h3>My Ketch Ups</h3>
+        <a href="/me/trashed/ketch-ups">Trash</a>
+        <div class="mt-4 d-flex align-items-center">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="checkbox-all">
+                <label class="custom-control-label" for="checkbox-all">
+                    Select All</label>
+            </div>
+            <select class="custom-select custom-select-sm checkbox-select-all" name="action" required>
+                <option value="" selected>- Select Action -</option>
+                <option value="delete">Delete</option>
+            </select>
+            <button class="btn btn-primary btn-sm btn-check-all-submit disabled">Apply</button>
+        </div>
+    </div>
+
+
+    <table class="table mt-4 table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" colspan="2">#</th>
+                <th scope="col">From</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col" colspan="2">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each news}}
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="newsIds[]" value="{{this._id}}">
+                    </div>
+                </td>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.from}}</td>
+                <td>{{this.title}}</td>
+                <td ">
+                    {{this.description}}</td>
+                <td ">
+                    {{this.full_des}}</td>
+                <td>
+                    <a href="/ketch-ups/{{this._id}}/edit" class="btn btn-outline-secondary btn-sm"
+                        style="margin-bottom: 5px">Edit</a>
+                    <a href="/ketch-ups" class="btn btn-outline-secondary btn-sm" data-toggle="modal"
+                        data-id="{{this._id}}" data-target="#delete-news-Modal">
+                        Delete</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">
+                    No News Found.
+                    <a href="/ketch-ups/create">News Posting</a>
+                </td>
+                {{/each}}
+        </tbody>
+    </table>
+</form>
+
+{{!-- confirm delete record --}}
+<!-- Modal -->
+<div class="modal fade" id="delete-news-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+                {{!-- <br>This action cannot be undone.</br> --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-delete-news" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Hidden delete form --}}
+<form name="delete-news-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var newsId;
+        var containerForm = document.forms['container-form'];
+        var btnDeleteNews = document.getElementById('btn-delete-news');
+        var deleteForm = document.forms['delete-news-form'];
+        var checkboxAll = $('#checkbox-all');
+        var newsItemCheckbox = $('input[name="newsIds[]"]');
+        var bntCheckAllSubmit = $('.btn-check-all-submit');
+
+        // when dialog confirm clicked
+        $('#delete-news-Modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            newsId = button.data('id'); // Extract info from data-* attributes
+        })
+
+        // when delete button clicked
+        btnDeleteNews.onclick = function () {
+            deleteForm.action = '/ketch-ups/' + newsId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+
+        // checkbox all changed
+        checkboxAll.change(function () {
+            var isCheckedAll = $(this).prop('checked');
+            newsItemCheckbox.prop('checked', isCheckedAll);
+            renderCheckAllSubmitBtn();
+        });
+
+        // news item checkbox changed
+        newsItemCheckbox.change(function () {
+            var isCheckedAll = newsItemCheckbox.length === $('input[name="newsIds[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckedAll);
+            renderCheckAllSubmitBtn();
+        });
+
+        //check all submit button clicked
+        bntCheckAllSubmit.on('submit', //when submit is happening
+            function (e) {
+                var isSubmittable = !$(this).hasClass('disabled');
+                if (!isSubmittable) {
+                    e.preventDefault();
+                }
+            })
+
+        //rerender check all submit button
+        function renderCheckAllSubmitBtn() {
+            var checkedCount = $('input[name="newsIds[]"]:checked').length;
+            if (checkedCount > 0) {
+                bntCheckAllSubmit.removeClass('disabled');
+            } else {
+                bntCheckAllSubmit.addClass('disabled');
+            }
+        }
+        //console.log(containerForm);
+    });
+
+</script>

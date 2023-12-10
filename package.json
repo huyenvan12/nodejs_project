@@ -7,7 +7,7 @@
     "beautify": "lint-staged",
     "prepare": "husky install",
     "start": "nodemon --inspect src/index.js",
-    "watch": "node-sass -w src/resources/scss/ -o src/public/css/app.css",
+    "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,9 +31,15 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.0",
+    "mongoose-delete": "^1.0.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "mongoose-slug-updater": "^3.3.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "body-parser": "^1.20.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "morgan": "^1.10.0",

@@ -1,1 +1,23 @@
-<h1>HOME MAIN</h1>
+<div class="mt-4">
+    <div class="row">
+
+        {{#each news}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card-news-item">
+                <a href="/ketch-ups/{{this.slug}}">
+                    <img class="card-img-top" src="{{this.image}}" alt="{{this.title}}">
+                </a>
+                <div class="card-body">
+                    <a href="/ketch-ups/{{this.slug}}">
+                        <h5 class="card-title">{{this.title}}</h5>
+                    </a>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="#" class="btn btn-primary">Ketch Up!!</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+
+    </div>
+</div>

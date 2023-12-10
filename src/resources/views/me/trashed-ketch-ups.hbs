@@ -1,0 +1,105 @@
+<div class="mt-4">
+    <div>
+        <a href="/me/stored/ketch-ups">Back to Ketch Ups</a>
+        <h3>Ketch Ups Deleted</h3>
+
+
+    </div>
+
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">From</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col" colspan="3">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each news}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.from}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.full_des}}</td>
+                <td>
+                    <a href="" class="btn btn-outline-secondary btn-sm btn-restore" data-id="{{this._id}}"
+                        style="margin-bottom: 5px">Restore</a>
+
+                    <a href="/ketch-ups" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                        data-id="{{this._id}}" data-target="#delete-news-Modal">
+                        Erase Forever</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">
+                    Trash Empty.
+                    <a href="/me/stored/ketch-ups">Ketch Ups List</a>
+                </td>
+                {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- confirm delete record --}}
+<!-- Modal -->
+<div class="modal fade" id="delete-news-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+                {{!-- <br>This action cannot be undone.</br> --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-delete-news" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Hidden delete form --}}
+<form name="delete-news-form" method="POST"></form>
+<form name="restore-news-form" method="POST"></form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var newsId;
+        var btnDeleteNews = document.getElementById('btn-delete-news');
+        var deleteForm = document.forms['delete-news-form'];
+        var restoreForm = document.forms['restore-news-form'];
+        var restoreBtn = $('.btn-restore');
+
+        // when dialog confirm clicked
+        $('#delete-news-Modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            newsId = button.data('id'); // Extract info from data-* attributes
+        })
+
+        // when delete button clicked
+        btnDeleteNews.onclick = function () {
+            deleteForm.action = '/ketch-ups/' + newsId + '/permanent?_method=DELETE';
+            deleteForm.submit();
+        }
+
+        // when restore button clicked
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var newsId = $(this).data('id');
+            //console.log($(this).data('id'));
+            restoreForm.action = '/ketch-ups/' + newsId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        })
+    });
+
+</script>

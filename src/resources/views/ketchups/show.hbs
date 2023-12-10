@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="flex">
+        <div class="card rounded-lg shadow p-4 mb-4" style="background-color: #EEA243;">
+            <div class="card-body">
+                {{!-- <h1 class="card-title text-light" style="font-size: 2em;">{{news.title}}</h1> --}}
+                <h1 class="card-title text-light" style="font-size: 2em; font-family: 'HandwrittenFont';">{{news.title}}
+                </h1>
+                <p class="card-text text-muted">From: <span style="color: #FEFEFA;">{{news.from}}</span></p>
+            </div>
+        </div>
+
+        <center><img src="{{news.image}}" class="img fluid rounded mb-4" width="100%" alt="{{news.title}}">
+        </center>
+    </div>
+    <div class="card rounded-lg shadow p-4" style="background-color: #3B9FF7; color: #fff;">
+        <div class="card-body">
+            <h4 class="card-title">Ketch Up!!</h4>
+            <p class="card-text">
+                {{news.full_des}}
+            </p>
+        </div>
+    </div>
+    <hr style="background-color: #EEA243; border: 1px solid #EEA243;">
+</div>

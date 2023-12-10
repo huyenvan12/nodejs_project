@@ -1,1 +1,40 @@
 @import 'variables';
+
+.card-news-item {
+    margin-top: 16px;
+}
+
+.card-img-top {
+    max-width: 375px;
+    max-height: 220px;
+    object-fit: cover;
+}
+
+// detail page
+.card-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.list-group-item {
+    border-radius: 0.25rem;
+    margin-bottom: 0;
+}
+
+@font-face {
+    font-family: 'HandwrittenFont';
+    src: url('../../public/fonts/Satisfy-Regular.ttf');
+}
+
+.user-avatar {
+    max-width: 28px;
+    max-height: 28px;
+    border-radius: 70%;
+    margin-right: 4px;
+}
+
+.custom-select {
+    width: 130px;
+    margin-left: 16px;
+    margin-right: 8px;
+}
