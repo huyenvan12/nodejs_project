@@ -17,11 +17,8 @@ const route = require('./routes');
 db.connect();
 
 //Express Static
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, 'public/css/app.css')));
 app.use(express.static('src/public/css'));
 app.use(express.static('src/public'));
-// console.log(__dirname)
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
