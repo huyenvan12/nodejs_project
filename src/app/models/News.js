@@ -4,7 +4,7 @@ var slug = require('mongoose-slug-updater');
 
 const mongooseDelete = require('mongoose-delete');
 
-const News = new Schema(
+const NewsSchema = new Schema(
     {
         from: { type: String, default: 'Stranger', required: true },
         title: {
@@ -21,8 +21,20 @@ const News = new Schema(
         timestamps: true,
     },
 );
+
+//Custom query helpers
+NewsSchema.query.sortable = function (req) {
+    if (req.query.hasOwnProperty('_sort')) {
+        const isValidType = ['asc', 'desc'].includes(req.query.type);
+        return this.sort({
+            [req.query.column]: isValidType ? req.query.type : 'desc',
+        });
+    }
+    return this;
+};
+
 // Add plugins
 mongoose.plugin(slug);
-News.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
+NewsSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
 
-module.exports = mongoose.model('News', News);
+module.exports = mongoose.model('News', NewsSchema);

@@ -4,13 +4,6 @@ const { multipleMongoosetoObject } = require('../../util/mongoose');
 class MeController {
     //[GET] /me/stored/ketch-ups
     storedKetchUps(req, res, next) {
-        let newsQuery = News.find({});
-        if (req.query.hasOwnProperty('_sort')) {
-            newsQuery = newsQuery.sort({
-                [req.query.column]: req.query.type,
-            });
-        }
-
         // News.countDocumentsWithDeleted()
         //     .then((deletedCount) => {
         //         console.log(deletedCount);
@@ -18,6 +11,7 @@ class MeController {
         //     .catch(next);
 
         News.find({})
+            .sortable(req)
             .then((news) => {
                 news = news.map((new_i) => new_i.toObject());
                 res.render('me/stored-ketch-ups', { news });
@@ -27,6 +21,7 @@ class MeController {
     //[GET] /me/trashed/ketch-ups
     trashedKetchUps(req, res, next) {
         News.findWithDeleted({ deleted: true })
+            .sortable(req)
             .then((news) => {
                 news = news.map((new_i) => new_i.toObject());
                 res.render('me/trashed-ketch-ups', { news });
