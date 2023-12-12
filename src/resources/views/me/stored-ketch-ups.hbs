@@ -22,9 +22,15 @@
             <tr>
                 <th scope="col" colspan="2">#</th>
                 <th scope="col">From</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col" colspan="2">Status</th>
+                <th scope="col">Title
+                    {{{sortable 'title' _sort}}}
+                </th>
+                <th scope="col">Description
+                    {{{sortable 'description' _sort}}}
+                </th>
+                <th scope="col" colspan="2">Status
+                    {{{sortable 'full_des' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -37,14 +43,19 @@
                 </td>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.from}}</td>
-                <td>{{this.title}}</td>
-                <td ">
-                    {{this.description}}</td>
-                <td ">
-                    {{this.full_des}}</td>
+                <td class="ellipsis" width="20%">
+                    <span> {{this.title}}
+                    </span>
+                <td class="ellipsis" width="25%">
+                    <span> {{this.description}}
+                    </span>
+                </td>
+                <td class="ellipsis" width="25%">
+                    <span>{{this.full_des}}
+                    </span>
+                </td>
                 <td>
-                    <a href="/ketch-ups/{{this._id}}/edit" class="btn btn-outline-secondary btn-sm"
-                        style="margin-bottom: 5px">Edit</a>
+                    <a href="/ketch-ups/{{this._id}}/edit" class="btn btn-outline-secondary btn-sm">Edit</a>
                     <a href="/ketch-ups" class="btn btn-outline-secondary btn-sm" data-toggle="modal"
                         data-id="{{this._id}}" data-target="#delete-news-Modal">
                         Delete</a>

@@ -4,6 +4,13 @@ const { multipleMongoosetoObject } = require('../../util/mongoose');
 class MeController {
     //[GET] /me/stored/ketch-ups
     storedKetchUps(req, res, next) {
+        let newsQuery = News.find({});
+        if (req.query.hasOwnProperty('_sort')) {
+            newsQuery = newsQuery.sort({
+                [req.query.column]: req.query.type,
+            });
+        }
+
         // News.countDocumentsWithDeleted()
         //     .then((deletedCount) => {
         //         console.log(deletedCount);
