@@ -22,16 +22,16 @@ app.use(express.static('src/public/css'));
 app.use(express.static('src/public/vendor'));
 app.use(express.static('src/public'));
 
-// override with POST having ?_method=DELETE
+//Override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
-// Custom middleware
+//Custom middleware
 app.use(SortMiddleware);
 
-// HTTP logger
+//HTTP logger
 // app.use(morgan('combined'));
 
-//template engine
+//Template engine
 app.engine(
     'hbs',
     hbs.engine({

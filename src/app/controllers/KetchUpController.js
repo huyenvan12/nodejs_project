@@ -23,8 +23,8 @@ class KetchUpController {
 
         const news = new News(req.body);
         news.save()
-            .then(() => res.redirect('/'))
-            .catch((error) => {});
+            .then(() => res.redirect('/ketch-ups/create'))
+            .catch(next);
     }
 
     //[GET] /ketch-ups/:id/edit

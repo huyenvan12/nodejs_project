@@ -1,0 +1,40 @@
+<div class="dashboard-calendar mt-4 mb-4">
+    <h3>Upcoming Events</h3>
+    <h4>December</h4>
+    <div class="calendar-grid">
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day active">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+    </div>
+    <ul class="events">
+        {{#each news}}
+        {{#if this.hasEvent}}
+        <li class="event">
+            <div class="event-info">
+                <span class="event-title">Meeting with <b>{{this.from}}</b></span>
+                <span class="event-date">{{this.timeEvent}}</span>
+            </div>
+            <div class="event-description">{{this.title}}</div>
+        </li>
+        {{/if}}
+        {{/each}}
+    </ul>
+</div>
+
+<div class="dashboard-calendar mt-4 mb-4">
+    <h3>Past Events</h3>
+    <h4>December</h4>
+    <div class="calendar-grid">
+        <div class="day">13</div>
+        <div class="day active">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+    </div>
+</div>
