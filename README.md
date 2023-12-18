@@ -1,21 +1,45 @@
-# NodeJS-Training
+# Node & ExpressJS Learning Project
 
-## Author
-
-Ngoc Huyen
-
-## Time
-
-11-12/2023
-
-
-## Description
-
-This repo contains documentation and source code for a NodeJS training project in the Gigarion intership programme.
+This repository houses documentation and source code for a NodeJS training project within the Gigarion internship program. The project focuses on learning back-end development with Node.js and Express.js, emphasizing the creation of RESTful APIs for websites.
 
 ## Contents
+* **Core Knowledge:**
+    * HTTP protocol
+    * SSR & CSR
+    * Node installation
+    * ExpressJS installation
+    * Nodemon & inspector installation
+    * Morgan installation
+    * Template engine (Handlebars)
+    * Static file & SCSS
+    * Bootstrap usage
+    * Basic routing
+    * GET method
+    * Query parameters
+    * Form default behavior
+    * POST method
 
-* **Documentation:** docs/**
+* **Website Construction:**
+    * MVC architecture
+    * Routes & Controllers (MVC)
+    * MongoDB installation (Windows)
+    * MongoDB installation (Ubuntu)
+    * MongoDB installation (MacOS)
+    * Prettier - Code formatter
+    * Model (MVC)
+    * JSON viewer extension installation
+    * Reading from the database (CRUD)
+    * Course detail page
+    * Creating a new course (CRUD)
+    * Updating a course (CRUD)
+    * Deleting a course (CRUD)
+    * Soft delete
+    * Counting deleted documents
+    * "Select all" with checkbox
+    * Bug fixing
+    * Middleware concept
+    * Sorting middleware
+<!-- * **Documentation:
     * Introduction to NodeJS: docs/intro.md
     * Installing NodeJS: docs/install.md
     * Basics of NodeJS: docs/basics.md
@@ -23,13 +47,9 @@ This repo contains documentation and source code for a NodeJS training project i
     * HTTP programming: docs/http-programming.md
     * Socket programming: docs/socket-programming.md
     * Database programming: docs/database-programming.md
-    * Web application programming: docs/web-application-programming.md
+    * Web application programming: docs/web-application-programming.md -->
 * **Source code:** src/**
-    * Example source code that illustrates NodeJS concepts.
-
-## Usage
-
-To get started with NodeJS, you can read the documentation in the `docs/` directory. After you have a good understanding of the basics, you can refer to the example source code in the `src/` directory for practice.
+    * Source code for an Example Project that illustrates Node & ExpressJS concepts.
 
 ## Updates
 
