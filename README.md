@@ -22,8 +22,6 @@ This repository houses documentation and source code for a NodeJS training proje
 * **Website Construction:**
     * MVC architecture
     * Routes & Controllers (MVC)
-    * MongoDB installation (Windows)
-    * MongoDB installation (Ubuntu)
     * MongoDB installation (MacOS)
     * Prettier - Code formatter
     * Model (MVC)
@@ -34,11 +32,10 @@ This repository houses documentation and source code for a NodeJS training proje
     * Updating a course (CRUD)
     * Deleting a course (CRUD)
     * Soft delete
-    * Counting deleted documents
     * "Select all" with checkbox
-    * Bug fixing
     * Middleware concept
     * Sorting middleware
+      
 <!-- * **Documentation:
     * Introduction to NodeJS: docs/intro.md
     * Installing NodeJS: docs/install.md
